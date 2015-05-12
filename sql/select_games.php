@@ -15,3 +15,13 @@
 		$sql_all_games = "SELECT * FROM produkt";
 		$result_games = $conn->query($sql_all_games);
 	}
+	
+function GameNameKürzen($GameName)
+{
+	if(strlen($GameName)<=27) {  
+    echo $GameName;
+	} else {
+    $GameNameKurz=substr($GameName,0,27) . '...';
+    echo $GameNameKurz;
+	}
+}
