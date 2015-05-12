@@ -73,12 +73,6 @@
 	?>
 </div>
 
-<script>
-function gotoTop()
-{
-$('body,html').animate({scrollTop: 0}, 800);
-}
-</script>
 <a href=javascript:void(0); onclick=gotoTop();><Button>Nach Oben ↑</Button></a>
-
+<script src="js/toTopScript.js"></script>
 
