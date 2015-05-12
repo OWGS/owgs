@@ -2,22 +2,8 @@
 	if (!isset($_SESSION["authenticated"])) {
 		$_SESSION["authenticated"] = 0;
 	}
-	if ($_SESSION["authenticated"] > 0) { 
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "owgs";
-		
-		mysql_connect($servername, $username, $password);
-		mysql_select_db($dbname);
-
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		$conn->set_charset('utf8');
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		} 
+	if ($_SESSION["authenticated"] > 0) {
+        require_once("db_connection.php");
 
 		$sql_user = "SELECT id FROM users WHERE username = '".$_SESSION["username"]."'";
 		$result_user = $conn->query($sql_user);

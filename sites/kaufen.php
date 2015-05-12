@@ -10,7 +10,7 @@
 			</div>
 			<div class="col-lg-12">
 				<br/>
-                <a href="index.php?site=kaufen"><Button class="btn btn-lg btn-primary btn-block">Kaufen</Button></a>
+                <a href="sql/kaufen.php"><Button class="btn btn-lg btn-primary btn-block">Kaufen.</Button></a>
 			</div>
             
         </div>
