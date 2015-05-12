@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+		require_once("sql/db_connection.php"); 
 		$host = "localhost";
 		$user = "root";
 		$pass = "";
@@ -11,9 +12,11 @@
 		if ($_POST['submit'] == "login") {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-			$sql = "SELECT * FROM users WHERE username='".$username."' AND password='".$password."' LIMIT 1";
-			$res = mysql_query($sql);
-			if (mysql_num_rows($res) == 1) {
+			$sqlSaltHash = "SELECT password FROM users WHERE username='".$username."' LIMIT 1";
+			$resultSaltHash = $conn->query($sqlSaltHash);
+			$saltHash = $resultSaltHash->fetch_assoc();
+			$saltHash = $saltHash['password'];
+			if (password_verify($password, $saltHash)) {
 				$_SESSION["authenticated"] = 1;
 				$_SESSION["username"] = $username;			
 				$_SESSION["good"] = "Hallo $username. Sie haben sich erfolgreich angemeldet.";
@@ -32,6 +35,7 @@
 				header( 'Location: index.php?site=registrierung' );
 			} else {
 				$password = $_POST['password'];
+				$password = password_hash($password, PASSWORD_BCRYPT);
 				$name = $_POST['name'];
 				$vorname = $_POST['vorname'];
 				$adresse = $_POST['adresse'];
