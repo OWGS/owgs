@@ -4,12 +4,12 @@
 		
 		if ($_POST['submit'] === "login") {
 			$username = mysqli_real_escape_string($conn, $_POST['username']);
-			$password = mysqli_real_escape_string($conn, $_POST['password']);
+			$password = $_POST['password'];
 			$sqlUser = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
 			$resultUser = $conn->query($sqlUser);
 			$user = $resultUser->fetch_assoc();
-            $user = $user['password'];
-			if (password_verify($password, $saltHash)) {
+            $userPassword = $user['password'];
+			if (password_verify($password, $userPassword)) {
 				$_SESSION["userID"] = $user['id'];
                 $_SESSION["authenticated"] = 1;
 				$_SESSION["username"] = $username;
@@ -31,7 +31,7 @@
 			} else {
 				$plz = $_POST['plz'];
 				$guthaben = $_POST['guthaben'];
-				$password = password_hash($password, PASSWORD_BCRYPT);
+				$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 				$name = mysqli_real_escape_string($conn, $_POST['name']);
 				$vorname = mysqli_real_escape_string($conn, $_POST['vorname']);
 				$adresse = mysqli_real_escape_string($conn, $_POST['adresse']);
