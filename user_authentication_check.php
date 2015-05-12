@@ -6,6 +6,3 @@
 		$_SESSION["bad"] = " Bitte erst einloggen oder Registrieren";
 		exit();
 	}
-
-//blabla
-
