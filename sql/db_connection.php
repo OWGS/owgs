@@ -1,12 +1,7 @@
-<?php	
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "owgs";
-	
+<?php
 
 		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
+		$conn = new mysqli("localhost", "root", "", "owgs");
 		$conn->set_charset('utf8');
 		// Check connection
 		if ($conn->connect_error) {

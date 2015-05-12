@@ -1,5 +1,5 @@
 <?php
-	require_once("sql/db_connection.php"); 
+	require_once(__DIR__."/db_connection.php");
 
 	$game_id = $_GET['id'];
 	$sql_select_game = "SELECT * FROM produkt WHERE id=".$game_id." LIMIT 1";

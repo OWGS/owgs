@@ -10,8 +10,14 @@
 			</div>
 			<div class="col-lg-12">
 				<br/>
-                <a href="sql/kaufen.php"><Button class="btn btn-lg btn-primary btn-block">Kaufen.</Button></a>
+                <a href="sql/kaufen.php"><Button class="btn btn-lg btn-primary btn-block">Bestätigen</Button></a>
 			</div>
-            
-        </div>
+            <?php
+                require_once(__DIR__."/../sql/MysqlConnection.php");
+                require_once(__DIR__."/../resources/User.php");
 
+                $connection = MysqlConnection::getConnection();
+                $user = new User($connection);
+                $found = $user->find_all();
+            ?>
+        </div>
