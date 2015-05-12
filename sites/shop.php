@@ -55,12 +55,13 @@
 	</div>
 	
 	<?php 
+	
 		if ($result_games->num_rows > 0) {
 			while($row = $result_games->fetch_assoc()) {
 	?>
 				<div class="col-lg-4 col-sm-6 text-center games">
 					<a href="index.php?site=show_game&id=<?php echo $row["id"] ?>"><img class="img-responsive img-center" src=<?php echo $row["bild_path"]; ?> alt=<?php echo $row["name"] ?>></a>
-					<h3> <?php echo $row["name"] ?> </h3>
+					<h3> <?php echo GameNameKürzen($row["name"]); ?> </h3>
 					<p> Preis: <?php echo $row["price"]; ?> Fr. </p>
 					<a href="sql/warenkorb.php?id=<?php echo $row["id"] ?>">In den Warenkorb<img src="img/desing/cartcolored.PNG" style="width:22px;height:22px;border:0"></a>
 				</div>
@@ -71,4 +72,13 @@
 		$conn->close();
 	?>
 </div>
-		
+
+<script>
+function gotoTop()
+{
+$('body,html').animate({scrollTop: 0}, 800);
+}
+</script>
+<a href=javascript:void(0); onclick=gotoTop();><Button>Nach Oben ↑</Button></a>
+
+
