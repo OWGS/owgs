@@ -9,9 +9,8 @@
 		$result_user = $conn->query($sql_user);
 		
 		if ($result_user->num_rows > 0) {
-			while($row = $result_user->fetch_assoc()) {
-				$user_id = $row["id"]; 
-			}
+			$row = $result_user->fetch_assoc();
+				$user_id = $row["id"];
 		}
 		
 		$produkt_id = $_REQUEST['id'];
