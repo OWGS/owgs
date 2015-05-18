@@ -25,6 +25,8 @@
 		<h3> <?php echo $row["name"] ?> </h3>
 		<p> Preis: <?php echo $row["price"]; ?> Fr. </p>
 		<a href="sql/warenkorb.php?id=<?php echo $row["id"] ?>">In den Warenkorb<img src="img/desing/cartcolored.PNG" style="width:22px;height:22px;border:0"></a>
+		<br>
+		<br>
 	</div>
 	
 	<?php }

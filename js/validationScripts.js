@@ -57,3 +57,12 @@ var character = String.fromCharCode(code);
     if (AllowRegex.test(character)) return true;    
     return false;
 }
+
+
+
+
+
+
+
+
+

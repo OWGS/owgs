@@ -4,7 +4,7 @@
                     <small>Füllen Sie bitte die Felder aus</small>
                 </h1>
 	
-				<form method="post" action="/owgs/senden.php">
+				<form method="post" action="sites/senden.php">
 				<p><label>Name:<br><input type="text" name="Name"></label></p>
 				<p><label>E-Mail:<br><input type="text" name="Mail"></label></p>
 				<p><label>Betreff:<br><input type="text" name="Betreff"></label></p>
