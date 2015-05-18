@@ -90,21 +90,7 @@
 
 
 
-<script>
-$(function() {
-    $(selector).pagination({
-        items: 100,
-        itemsOnPage: 10,
-        cssStyle: 'light-theme'
-    });
-});
-</script>
 
-
-
-<script type="text/javascript" src="path_to/jquery.js"></script>
-<script type="text/javascript" src="path_to/jquery.simplePagination.js"></script>
-<link type="text/css" rel="stylesheet" href="path_to/simplePagination.css"/>
 
 
 
