@@ -5,7 +5,7 @@
                     <small>Füllen Sie bitte die Felder aus</small>
                 </h1>
 				<form method="post" action="user_authentication.php" name="Registrierungsformular">
-				<input type="text" name="username" class="form-control" placeholder="Benutzername" required="true" onblur="diableSubmit(username)"/><br>
+				<input type="text" name="username" class="form-control" placeholder="Benutzername" required="true" /><br>
 				<input type="email" name="email" class="form-control" placeholder="E-Mail" required="true" /><br>
 				<input type="password" name="password" id="pass1" class="form-control" placeholder="Passwort (mind. 8 Zeichen)" required="true" onkeyup="checkPass()" /><br>
 				<input type="password" name="passwordconfirm" id="pass2" class="form-control" placeholder="Passwort bestätigen" required="true" onkeyup="checkPass()"/> <span id="confirmMessage" class="confirmMessage"></span><br>
