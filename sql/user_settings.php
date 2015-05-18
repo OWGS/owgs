@@ -41,7 +41,7 @@ if ($_POST && $_POST['submit'] === "Update") {
         $_SESSION["good"] = "Es ist ein Datenbankfehler aufgetreten";
         header( 'Location: ../index.php?site=settings' );
     } else {
-        $_SESSION["good"] = "Deine Daten wurden aktuallisiert";
+        $_SESSION["good"] = "Ihre Daten wurden aktuallisiert";
         $_SESSION["username"] = $username;
         header( 'Location: ../index.php' );
     }
