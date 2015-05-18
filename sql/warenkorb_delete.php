@@ -10,7 +10,7 @@
 		
 		if ($result_user->num_rows > 0) {
 			while($row = $result_user->fetch_assoc()) {
-				$user_id = $row["id"]; 
+				$user_id = $row["id"];
 			}
 		}
 		
