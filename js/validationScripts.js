@@ -4,6 +4,7 @@
  */
 
 
+
 function isNumberKey(evt)
 {
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -22,31 +23,31 @@ function checkPass()
     var message = document.getElementById('confirmMessage');
     var goodColor = "#66cc66";
     var badColor = "#ff6666";
-	if(pass1.value == pass2.value && !pass1.value == ""){
-        	message.style.color = goodColor;
-        	message.innerHTML = "Passwörter stimmen überein!"
-        	document.getElementById("submit").disabled = false;
-        	 
+    if(pass1.value == pass2.value && !pass1.value == ""){
+            message.style.color = goodColor;
+            message.innerHTML = "Passwörter stimmen überein!"
+          /*  document.getElementById("submit").disabled = false; */
+             
      
     }else if (pass1.value == ""){
-    		message.style.color = badColor;
-        	message.innerHTML = "Bitte geben Sie ein Passwort ein!"
-        	document.getElementById("submit").disabled = true; 
+            message.style.color = badColor;
+            message.innerHTML = "Bitte geben Sie ein Passwort ein!"
+      /*      document.getElementById("submit").disabled = true; */
     
     }else{
         message.style.color = badColor;
         message.innerHTML = "Passwörter stimmen nicht überein!"
-        document.getElementById("submit").disabled = true; 
+    /*    document.getElementById("submit").disabled = true; */
        
     }
       if(pass1.value.length < 8){
-      	message.style.color = badColor;
-    	message.innerHTML = "Mindestens 8 Zeichen benötigt!"
-    	document.getElementById("submit").disabled = true; 
+        message.style.color = badColor;
+        message.innerHTML = "Mindestens 8 Zeichen benötigt!"
+       /* document.getElementById("submit").disabled = true; */
     }
    
  }  
-function textonly(e){
+function onlyText(e){
 var code;
 if (!e) var e = window.event;
 if (e.keyCode) code = e.keyCode;
