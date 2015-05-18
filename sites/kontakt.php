@@ -3,16 +3,7 @@
                 <h1 class="page-header">Kontaktformular
                     <small>Füllen Sie bitte die Felder aus</small>
                 </h1>
-	
-				<form method="post" action="sites/senden.php">
-				<p><label>Name:<br><input type="text" name="Name"></label></p>
-				<p><label>E-Mail:<br><input type="text" name="Mail"></label></p>
-				<p><label>Betreff:<br><input type="text" name="Betreff"></label></p>
-				<p><label>Nachricht:<br>
-				<textarea name="Nachricht" cols="50" rows="8"></textarea></label></p>
-				<input type="submit" value="OK">
-					
-				
+                <a id="f540014e0a700cb7b0b5db0e12c45ebf" href="http://www.gratis-kontaktformular.de">www.gratis-kontaktformular.de/</a><script src="http://www.gratis-kontaktformular.de/formular.php?i=f540014e0a700cb7b0b5db0e12c45ebf" type="text/javascript"></script>
             </div>
         </div>
 
