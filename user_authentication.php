@@ -34,10 +34,11 @@
 				$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 				$name = mysqli_real_escape_string($conn, $_POST['name']);
 				$vorname = mysqli_real_escape_string($conn, $_POST['vorname']);
+				$email = mysqli_real_escape_string($conn, $_POST['email']);
 				$adresse = mysqli_real_escape_string($conn, $_POST['adresse']);
 				$ort = mysqli_real_escape_string($conn, $_POST['ort']);
 				$rolle = "3";
-				$conn->query("INSERT INTO users (username,password,name,vorname,adresse,plz,ort,guthaben,fk_rolle) VALUES ('".$username."','".$password."','".$name."','".$vorname."','".$adresse."','".$plz."','".$ort."','".$guthaben."','".$rolle."')");
+				$conn->query("INSERT INTO users (username,password,name,vorname,adresse,plz,ort,guthaben,email,fk_rolle) VALUES ('".$username."','".$password."','".$name."','".$vorname."','".$adresse."','".$plz."','".$ort."','".$guthaben."','".$email."','".$rolle."')");
 				$resultUser = $conn->query("SELECT * FROM users WHERE username = '".$username."'");
 				$user = $resultUser->fetch_assoc();
 				$_SESSION["userID"] = $user['id'];
