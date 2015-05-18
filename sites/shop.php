@@ -68,7 +68,9 @@
 		if ($result_games->num_rows > 0) {
 			while($row = $result_games->fetch_assoc()) {
 	?>
-				<div class="col-lg-4 col-sm-6 text-center games">
+
+
+		<div class="col-lg-4 col-sm-6 text-center games">
 					<a href="index.php?site=show_game&id=<?php echo $row["id"] ?>"><img class="img-responsive img-center" src=<?php echo $row["bild_path"]; ?> alt=<?php echo $row["name"] ?>></a>
 					<h3> <?php echo GameNameKürzen($row["name"]); ?> </h3>
 					<p> Preis: <?php echo $row["price"]; ?> Fr. </p>
@@ -77,7 +79,8 @@
 				<br>
 				</div>
 
-	<?php }
+
+<?php }
 		} else {
 			echo "Keine Produkte gefunden";
 		}
@@ -85,6 +88,28 @@
 	?>
 </div>
 
+
+
+<script>
+$(function() {
+    $(selector).pagination({
+        items: 100,
+        itemsOnPage: 10,
+        cssStyle: 'light-theme'
+    });
+});
+</script>
+
+
+
+<script type="text/javascript" src="path_to/jquery.js"></script>
+<script type="text/javascript" src="path_to/jquery.simplePagination.js"></script>
+<link type="text/css" rel="stylesheet" href="path_to/simplePagination.css"/>
+
+
+
+			
+
 <a href=javascript:void(0); onclick=gotoTop();><Button>Nach Oben ↑</Button></a>
 <script src="js/toTopScript.js"></script>
-
+<script src="js/paginationScript.js"></script>
