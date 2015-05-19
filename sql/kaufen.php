@@ -21,7 +21,7 @@
                 $produktId = $rowWarenkorb["fk_produkt"];
                 $resultProdukt = $conn->query("SELECT * FROM produkt WHERE id = '".$produktId."'");
                 while($rowProdukt = $resultProdukt->fetch_assoc()) {
-                    $gesamtpreis += $rowProdukt["price"];
+                    $gesamtpreis += $rowProdukt["price"] * $rowWarenkorb["quantity"];
 
                 }
             }

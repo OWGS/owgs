@@ -4,39 +4,31 @@
 	if (!isset($_SESSION["authenticated"])) {
 		$_SESSION["authenticated"] = 0;
 	}
-	if ($_SESSION["authenticated"] > 0) { 
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "owgs";
-		
-		mysql_connect($servername, $username, $password);
-		mysql_select_db($dbname);
+	if ($_SESSION["authenticated"] > 0) {
+        require_once(__DIR__."/db_connection.php");
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		$conn->set_charset('utf8');
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		} 
+		$sqlUser = "SELECT id FROM users WHERE username = '".$_SESSION["username"]."'";
+		$resultUser = $conn->query($sqlUser);
+		$user = $resultUser->fetch_assoc();
+		$userId = $user["id"];
 
-		$sql = "SELECT id FROM users WHERE username = '".$_SESSION["username"]."'";
-		$result = $conn->query($sql);
-		
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc()) {
-				$user_id = $row["id"]; 
-			}
-		}
-		$conn->close();
+		$produktId = $_REQUEST['id'];
 
-		$produkt_id = $_REQUEST['id'];
-		$sql_insert_warenkorb = "INSERT INTO warenkorb(fk_user, fk_produkt) VALUES('".$user_id."', '".$produkt_id."')";
-		mysql_query($sql_insert_warenkorb);
-		
-		$_SESSION["good"] = "Sie haben den Artikel erfolgreich in den Warenkorb gelegt";
-		header( 'Location: ../index.php?site=shop' );
+        $resultFindWarenkorb = $conn->query("SELECT * FROM warenkorb WHERE fk_user='".$userId."' AND fk_produkt='".$produktId."'");
+        if ($resultFindWarenkorb->num_rows > 0) {
+            $FindWarenkorb = $resultFindWarenkorb->fetch_assoc();
+            $quantity = $FindWarenkorb["quantity"] + 1;
+            $conn->query("UPDATE warenkorb SET quantity=".$quantity." WHERE fk_user=".$userId." AND fk_produkt='".$produktId."'");
+        } else {
+            $conn->query("INSERT INTO warenkorb(fk_user, fk_produkt) VALUES('" . $userId . "', '" . $produktId . "')");
+        }
+            if (!$conn->error) {
+                $_SESSION["good"] = "Sie haben den Artikel erfolgreich in den Warenkorb gelegt";
+                header('Location: ../index.php?site=shop');
+            } else {
+                $_SESSION["bad"] = $conn->error;
+            }
+            $conn->close();
 	} else {
 		header( 'Location: ../index.php?site=login' );
 		$_SESSION["bad"] = "Bitte zuerst einloggen oder registrieren.";
