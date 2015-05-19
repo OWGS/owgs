@@ -1,21 +1,18 @@
 <?php 
 	session_start();
-		$host = "localhost";
-		$user = "root";
-		$pass = "";
-		$db = "owgs";
-
-		mysql_connect($host, $user, $pass);
-		mysql_select_db($db);
+		require_once("sql/db_connection.php");
 		
-		if ($_POST['submit'] == "login") {
-			$username = $_POST['username'];
+		if ($_POST['submit'] === "login") {
+			$username = mysqli_real_escape_string($conn, $_POST['username']);
 			$password = $_POST['password'];
-			$sql = "SELECT * FROM users WHERE username='".$username."' AND password='".$password."' LIMIT 1";
-			$res = mysql_query($sql);
-			if (mysql_num_rows($res) == 1) {
-				$_SESSION["authenticated"] = 1;
-				$_SESSION["username"] = $username;			
+			$sqlUser = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
+			$resultUser = $conn->query($sqlUser);
+			$user = $resultUser->fetch_assoc();
+            $userPassword = $user['password'];
+			if (password_verify($password, $userPassword)) {
+				$_SESSION["userID"] = $user['id'];
+                $_SESSION["authenticated"] = 1;
+				$_SESSION["username"] = $username;
 				$_SESSION["good"] = "Hallo $username. Sie haben sich erfolgreich angemeldet.";
 				header ( 'Location: index.php?site=home' ); 
 			} else {
@@ -23,29 +20,33 @@
 				$_SESSION["bad"] = "Ihr Username oder Passwort ist ungültig.";
 				header ( 'Location: index.php?site=login' );
 			}
-		} else if ($_POST['submit'] == "Registrieren") {
-			$username = $_POST['username'];
-			$sql_find_user = "SELECT * FROM users WHERE username='".$username."'";
-			$res = mysql_query($sql_find_user);
-			if (mysql_num_rows($res) > 0) {
+		} elseif ($_POST['submit'] === "Registrieren") {
+			$username = mysqli_real_escape_string($conn, $_POST['username']);
+			$sqlFindUser = "SELECT * FROM users WHERE username='".$username."'";
+			$resultUser = $conn->query($sqlFindUser);
+			$User = $resultUser->fetch_assoc();
+			if ($User['username'] == $username) {
 				$_SESSION["bad"] = " Der Username $username ist bereits vergeben";
 				header( 'Location: index.php?site=registrierung' );
 			} else {
-				$password = $_POST['password'];
-				$name = $_POST['name'];
-				$vorname = $_POST['vorname'];
-				$adresse = $_POST['adresse'];
 				$plz = $_POST['plz'];
-				$ort = $_POST['ort'];
 				$guthaben = $_POST['guthaben'];
+				$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+				$name = mysqli_real_escape_string($conn, $_POST['name']);
+				$vorname = mysqli_real_escape_string($conn, $_POST['vorname']);
+				$email = mysqli_real_escape_string($conn, $_POST['email']);
+				$adresse = mysqli_real_escape_string($conn, $_POST['adresse']);
+				$ort = mysqli_real_escape_string($conn, $_POST['ort']);
 				$rolle = "3";
-				$sql_insert_user = "INSERT INTO users (username,password,name,vorname,adresse,plz,ort,guthaben,fk_rolle) VALUES ('".$username."','".$password."','".$name."','".$vorname."','".$adresse."','".$plz."','".$ort."','".$guthaben."','".$rolle."')";
-				mysql_query($sql_insert_user);
-				header( 'Location: index.php?site=home' );
-				$_SESSION["authenticated"] = 1;
+				$conn->query("INSERT INTO users (username,password,name,vorname,adresse,plz,ort,guthaben,email,fk_rolle) VALUES ('".$username."','".$password."','".$name."','".$vorname."','".$adresse."','".$plz."','".$ort."','".$guthaben."','".$email."','".$rolle."')");
+				$resultUser = $conn->query("SELECT * FROM users WHERE username = '".$username."'");
+				$user = $resultUser->fetch_assoc();
+				$_SESSION["userID"] = $user['id'];
+                $_SESSION["authenticated"] = 1;
 				$_SESSION["username"] = $username;
 				$_SESSION["good"] = "Willkommen bei OWGS Sie haben sich erfolgreich registriert.";
-			}
+				header( 'Location: index.php?site=home' );
+			} 
 		} else {
 			header ( 'Location: index.php?site=login' );
 			$_SESSION["authenticated"] = 0;
