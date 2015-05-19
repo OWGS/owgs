@@ -2,17 +2,15 @@
 /**
  * @link: http://www.Awcore.com/dev
  */
-    //connect to the database
-    include_once(__DIR__."/db.php"); 
-    //get the function
-    include_once (__DIR__."/function.php");
+require_once(__DIR__."/../sql/db_connection.php");
+//get the function
+include_once (__DIR__."/function.php");
 
-    	$page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
-    	$limit = 9;
-    	$startpoint = ($page * $limit) - $limit;
-        
-        //to make pagination
-        $statement = "`produkt`";
+$page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+$limit = 9;
+$startpoint = ($page * $limit) - $limit;
+
+
 ?>
 
 
@@ -78,21 +76,22 @@
 </div>
 
 
+
+
+
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="page-header">Games:</h2>
 	</div>
+	
+	<?php 
+	
+		if ($result_games->num_rows > 0) {
+			while($row = $result_games->fetch_assoc()) {
+	?>
 
 
-<div class="records round">
-   <?php
-            //show records
-            $query = mysql_query("SELECT * FROM {$statement} LIMIT {$startpoint} , {$limit}");
-        	while ($row = mysql_fetch_assoc($query)) {
-        ?>
-            
-		
-			<div class="col-lg-4 col-sm-6 text-center games">
+		<div class="col-lg-4 col-sm-6 text-center games">
 					<a href="index.php?site=show_game&id=<?php echo $row["id"] ?>"><img class="img-responsive img-center" src=<?php echo $row["bild_path"]; ?> alt=<?php echo $row["name"] ?>></a>
 					<h3> <?php echo GameNameKürzen($row["name"]); ?> </h3>
 					<p> Preis: <?php echo $row["price"]; ?> Fr. </p>
@@ -100,23 +99,31 @@
 				<br>
 				<br>
 				</div>
+            <?php }
+        } else {
+            echo "Keine Produkte gefunden";
+        }
+    ?>
 
-		
-        <?php    
-            } // end while $row
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <?php
+                echo pagination($result_games_all->num_rows,$limit,$page);
+                $conn->close();
         ?>
     </div>
-	
-
-<?php
-	echo pagination($statement,$limit,$page);
-?>
 </div>
 
 
 
 
 
+
+
+
+			
 
 <a href=javascript:void(0); onclick=gotoTop();><Button>Nach Oben ↑</Button></a>
 <script src="js/toTopScript.js"></script>

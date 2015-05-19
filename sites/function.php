@@ -27,9 +27,8 @@
     	if($lastpage > 1)
     	{	
     		$pagination .= "<ul class='pagination'>";
-                    $pagination .= "<li class='details'>Page $page of $lastpage</li>";
-					
-					
+            //$pagination .= "<li class='details'>Page $page of $lastpage</li>";
+						
 			if ($page >= $counter + 1){ 
 				$pagination.= "<li><a href='{$url}page=1'><<</a></li>";
 				$pagination.= "<li><a href='{$url}page=$prev'><</a></li>";	
@@ -37,12 +36,7 @@
 				$pagination.= "<li><a class='current'><<</a></li>";
 				$pagination.= "<li><a class='current'><</a></li>";
     		}
-			
-			
-			
-			
-			
-			
+				
     		if ($lastpage < 7 + ($adjacents * 2))
     		{	
     			for ($counter = 1; $counter <= $lastpage; $counter++)
@@ -96,9 +90,6 @@
     				}
     			}
     		}
-    		
-			
-			
 			
     		if ($page < $counter - 1){ 
     			$pagination.= "<li><a href='{$url}page=$next'>></a></li>";
