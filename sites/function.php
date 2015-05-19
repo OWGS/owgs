@@ -17,12 +17,32 @@
     	$next = $page + 1;
         $lastpage = ceil($total/$per_page);
     	$lpm1 = $lastpage - 1;
-    	
+    	$counter = 1;
     	$pagination = "";
+		
+		
+		
+		
+		
     	if($lastpage > 1)
     	{	
     		$pagination .= "<ul class='pagination'>";
                     $pagination .= "<li class='details'>Page $page of $lastpage</li>";
+					
+					
+			if ($page >= $counter + 1){ 
+				$pagination.= "<li><a href='{$url}page=1'><<</a></li>";
+				$pagination.= "<li><a href='{$url}page=$prev'><</a></li>";	
+    		}else{
+				$pagination.= "<li><a class='current'><<</a></li>";
+				$pagination.= "<li><a class='current'><</a></li>";
+    		}
+			
+			
+			
+			
+			
+			
     		if ($lastpage < 7 + ($adjacents * 2))
     		{	
     			for ($counter = 1; $counter <= $lastpage; $counter++)
@@ -32,9 +52,7 @@
     				else
     					$pagination.= "<li><a href='{$url}page=$counter'>$counter</a></li>";					
     			}
-    		}
-    		elseif($lastpage > 5 + ($adjacents * 2))
-    		{
+    		}elseif($lastpage > 5 + ($adjacents * 2)){
     			if($page < 1 + ($adjacents * 2))		
     			{
     				for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
@@ -79,12 +97,15 @@
     			}
     		}
     		
+			
+			
+			
     		if ($page < $counter - 1){ 
-    			$pagination.= "<li><a href='{$url}page=$next'>Next</a></li>";
-                $pagination.= "<li><a href='{$url}page=$lastpage'>Last</a></li>";
+    			$pagination.= "<li><a href='{$url}page=$next'>></a></li>";
+                $pagination.= "<li><a href='{$url}page=$lastpage'>>></a></li>";
     		}else{
-    			$pagination.= "<li><a class='current'>Next</a></li>";
-                $pagination.= "<li><a class='current'>Last</a></li>";
+    			$pagination.= "<li><a class='current'>></a></li>";
+                $pagination.= "<li><a class='current'>>></a></li>";
             }
     		$pagination.= "</ul>\n";		
     	}
