@@ -7,7 +7,7 @@ require_once(__DIR__."/../sql/db_connection.php");
 include_once (__DIR__."/function.php");
 
 $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
-$limit = 9;
+$limit = 12;
 $startpoint = ($page * $limit) - $limit;
 
 
