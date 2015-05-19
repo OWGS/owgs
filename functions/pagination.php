@@ -18,11 +18,7 @@
 
     	$counter = 1;
     	$pagination = "";
-		
-		
-		
-		
-		
+
     	if($lastpage > 1)
     	{	
     		$pagination .= "<ul class='pagination'>";

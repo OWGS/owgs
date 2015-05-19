@@ -24,7 +24,7 @@
         }
             if (!$conn->error) {
                 $_SESSION["good"] = "Sie haben den Artikel erfolgreich in den Warenkorb gelegt";
-                header('Location: ../index.php?site=shop');
+                header('Location: ../index.php?site=warenkorb');
             } else {
                 $_SESSION["bad"] = $conn->error;
             }
