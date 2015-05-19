@@ -37,14 +37,17 @@
 					 <a href="?site=warenkorb">Warenkorb<img src="img/desing/cart.PNG" style="width:22px;height:22px;border:0"></a>
 					</li>
 						<?php }  ?>
-					<li>
+					<?php if ($_SESSION["authenticated"] > 0) { ?>
+                    <li>
                         <a href="?site=settings">Settings</a>
                     </li>
-					<?php if ($_SESSION["authenticated"] > 0) { ?>	
 					<li>				
 					<a href="?site=logout">Log Out</a>
 					</li>
-					<?php } else { ?>	
+					<?php } else { ?>
+                    <li>
+                        <a href="?site=registrierung">Registrieren</a>
+                    </li>
 					<li>
 							<a href="?site=login">Log In</a>
 					</li>
