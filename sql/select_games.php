@@ -1,29 +1,21 @@
 <?php
-	require_once("sql/db_connection.php");  
+	require_once(__DIR__."/db_connection.php");
+    require_once(__DIR__."/../functions/gameNameKuerzen.php");
 
-	$sql_all_platforms = "SELECT * FROM platform";
-	$result_all_platforms = $conn->query($sql_all_platforms);
-	$sql_all_kategories = "SELECT * FROM game_type";
-	$result_all_kategories = $conn->query($sql_all_kategories);
+	$sqlAllPlatforms = "SELECT * FROM platform";
+	$resultAllPlatforms = $conn->query($sqlAllPlatforms);
+	$sqlAllKategories = "SELECT * FROM game_type";
+	$resultAllKategories = $conn->query($sqlAllKategories);
 	if (isset($_GET['platform']) || isset($_GET['kategorie']) || isset($_GET['suche'])) {
-		$such_text = (isset($_GET['suche']) ? $_GET['suche'] : "%%");
-		$platform_id = (isset($_GET['platform']) ? $_GET['platform'] : "%%");
-		$katagorie_id = (isset($_GET['kategorie']) ? $_GET['kategorie'] : "%%");
-        $result_games_all = $conn->query("SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorie_id."' AND fk_platform LIKE '".$platform_id."' AND name LIKE '%".$such_text."%'");
-		$sql_suche_games = "SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorie_id."' AND fk_platform LIKE '".$platform_id."' AND name LIKE '%".$such_text."%' LIMIT $startpoint, $limit";
-		$result_games = $conn->query($sql_suche_games);
+		$suchText = (isset($_GET['suche']) ? $_GET['suche'] : "%%");
+		$platformId = (isset($_GET['platform']) ? $_GET['platform'] : "%%");
+		$katagorieId = (isset($_GET['kategorie']) ? $_GET['kategorie'] : "%%");
+        $resultGamesAll = $conn->query("SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorieId."' AND fk_platform LIKE '".$platformId."' AND name LIKE '%".$suchText."%'");
+		$sqlSucheGames = "SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorieId."' AND fk_platform LIKE '".$platformId."' AND name LIKE '%".$suchText."%' LIMIT $startpoint, $limit";
+		$resultGames = $conn->query($sqlSucheGames);
 	} else {
-        $result_games_all = $conn->query("SELECT * FROM produkt");
-		$sql_all_games = "SELECT * FROM produkt LIMIT $startpoint, $limit";
-		$result_games = $conn->query($sql_all_games);
+        $resultGamesAll = $conn->query("SELECT * FROM produkt");
+		$sqlAllGames = "SELECT * FROM produkt LIMIT $startpoint, $limit";
+		$resultGames = $conn->query($sqlAllGames);
 	}
-	
-function GameNameKürzen($GameName)
-{
-	if(strlen($GameName)<=27) {  
-    echo $GameName;
-	} else {
-    $GameNameKurz=substr($GameName,0,27) . '...';
-    echo $GameNameKurz;
-	}
-}
+
