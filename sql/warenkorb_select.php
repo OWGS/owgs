@@ -18,24 +18,25 @@
 		
 		if ($resultWarenkorb->num_rows > 0) {
 			$gesamtpreis = 0;
-			while($row = $resultWarenkorb->fetch_assoc()) {
-				$produkt_id = $row["fk_produkt"]; 
+			while($rowWarenkorb = $resultWarenkorb->fetch_assoc()) {
+				$produkt_id = $rowWarenkorb["fk_produkt"];
 				$result_produkt = $conn->query("SELECT * FROM produkt WHERE id = '".$produkt_id."'");
 				while($rowProdukt = $result_produkt->fetch_assoc()) {
-				$gesamtpreis += $rowProdukt["price"];
-				?>
+				    $gesamtpreis += $rowProdukt["price"] * $rowWarenkorb["quantity"];
+?>
 					<div class="col-lg-4 col-sm-6 text-center games">
-						<img class="img-responsive img-center" src=<?php echo $rowProdukt["bild_path"]; ?> alt=<?php echo $rowProdukt["name"] ?>>
+                        <a href="index.php?site=show_game&id=<?php echo $rowProdukt["id"] ?>">
+						    <img class="img-responsive img-center" src=<?php echo $rowProdukt["bild_path"]; ?> alt=<?php echo $rowProdukt["name"] ?>>
+                        </a>
 						<h3> <?php echo $rowProdukt["name"] ?> </h3>
-						<p> Preis: <?php echo $rowProdukt["price"]; ?> Fr. </p>
+						<p> Einzelpreis: <?php echo $rowProdukt["price"]; ?> Fr. Stückzahl: <?php echo $rowWarenkorb["quantity"]; ?> </p>
 						<a href="sql/warenkorb_delete.php?id=<?php echo $rowProdukt["id"] ?>">DELETE</a>
 						<h2></h2>
 					</div>
-				<?php }
-			}
-		}
+				<?php } // end while $rowProdukt
+			} // end while $rowWarenkorb
+		} // end if $resultWarenkorb
 		$conn->close();
-		
 	} else {
 		header( 'Location: ../index.php?site=login' );
 		$_SESSION["bad"] = "Bitte zuerst einloggen oder registrieren.";
