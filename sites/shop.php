@@ -1,3 +1,19 @@
+<?php
+/**
+ * @link: http://www.Awcore.com/dev
+ */
+require_once(__DIR__."/../sql/db_connection.php");
+//get the function
+include_once (__DIR__."/function.php");
+
+$page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+$limit = 9;
+$startpoint = ($page * $limit) - $limit;
+
+
+?>
+
+
 <div class="row" xmlns="http://www.w3.org/1999/html">
     <div class="col-lg-12">
         <h1 class="page-header">Shop</h1>
@@ -58,6 +74,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="page-header">Games:</h2>
@@ -78,15 +99,23 @@
 				<br>
 				<br>
 				</div>
+            <?php }
+        } else {
+            echo "Keine Produkte gefunden";
+        }
+    ?>
 
-
-<?php }
-		} else {
-			echo "Keine Produkte gefunden";
-		}
-		$conn->close();
-	?>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <?php
+                echo pagination($result_games_all->num_rows,$limit,$page);
+                $conn->close();
+        ?>
+    </div>
+</div>
+
 
 
 
