@@ -55,4 +55,3 @@ var character = String.fromCharCode(code);
 }
 
 
-
