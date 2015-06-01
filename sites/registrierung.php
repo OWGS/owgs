@@ -43,19 +43,5 @@
 	        </div>
         </div>
 
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="js/validationScripts.js"></script>
 
