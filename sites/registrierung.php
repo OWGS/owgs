@@ -19,7 +19,7 @@
 						<input type="text" name="plz" class="form-control" value="<?php echo $_SESSION['plz'];?>" maxlength="4" onkeypress="return isNumberKey(event)" required="true" /><br>
 						<input type="text" name="ort" class="form-control" value="<?php echo $_SESSION['ort'];?>" required="true" onkeypress="return onlyText(event);"/><br>
 						<input type="text" name="guthaben" class="form-control" min="1" max="1000000" value="<?php echo $_SESSION['guthaben'];?>" maxlength="5" onkeypress="return isNumberKey(event)" required="true" /><br>
-						<input type="submit" name="submit" id="submit" value="Registrieren", class="btn btn-lg btn-primary btn-block" onclick="allnumeric(document.Registrierungsformular.plz)" />
+						<input type="submit" name="submit" id="submit" value="Registrieren", disabled="true" class="btn btn-lg btn-primary btn-block" onclick="allnumeric(document.Registrierungsformular.plz)"/>
 						</form>
 					<?php 
 					} else { 
@@ -35,7 +35,7 @@
 						<input type="text" name="plz" class="form-control" placeholder="PLZ" maxlength="4" onkeypress="return isNumberKey(event)" required="true" /><br>
 						<input type="text" name="ort" class="form-control" placeholder="Ort" required="true" onkeypress="return onlyText(event);"/><br>
 						<input type="text" name="guthaben" class="form-control" min="1" max="1000000" placeholder="Guthaben" maxlength="5" onkeypress="return isNumberKey(event)" required="true" /><br>
-						<input type="submit" name="submit" id="submit" value="Registrieren", class="btn btn-lg btn-primary btn-block" onclick="allnumeric(document.Registrierungsformular.plz)" />
+						<input type="submit" name="submit" id="submit" value="Registrieren", disabled="true" class="btn btn-lg btn-primary btn-block" onclick="allnumeric(document.Registrierungsformular.plz)" />
 						</form>
 						  
 					<?php // end if $_GET
