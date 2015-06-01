@@ -1,4 +1,12 @@
-<?php 
+<?php
+
+/**
+ * User: eeglit
+ * Date: 01.06.2015
+ * Dieses php file ist für die das LogIn und die Registrierung. Alle Benuzereingaben werden escaped
+ * Bitte keine Variablennamen ändern welche im validation.php file verwendet werden.
+ */
+
 	session_start();
 		require_once("sql/db_connection.php");
 		
@@ -9,6 +17,7 @@
 			$resultUser = $conn->query($sqlUser);
 			$user = $resultUser->fetch_assoc();
             $userPassword = $user['password'];
+            // password wird mit pwssword_verify endschlüsselt und überprüft.
 			if (password_verify($password, $userPassword)) {
 				$_SESSION["userID"] = $user['id'];
                 if ($user["fk_rolle"] == 4){

@@ -13,9 +13,6 @@ function isNumberKey(evt)
     return true;
 }
 
-
-
-
 function checkPass()
 {
     var pass1 = document.getElementById('pass1');
