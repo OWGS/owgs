@@ -9,11 +9,11 @@
 					if (isset($_GET['fail']) && $_GET['fail'] == 1){
 		 			?>			
 		 				<form method="post" action="user_authentication.php" name="Registrierungsformular">
-						<p>Username: </p><input type="text" name="username" class="form-control" placeholder="username" required="true" /><br>
+						<p>Username: </p><input type="text" name="username" class="form-control" placeholder="Username" required="true" /><br>
 						<p>E-Mail: </p><input type="email" name="email" class="form-control" value="<?php echo $_SESSION['email'];?>" required="true" /><br>
 						<p>Passwort: </p><input type="password" name="password" id="pass1" class="form-control" placeholder="Passwort (mind. 8 Zeichen)" required="true" onkeyup="checkPass()" /><br>
 						<p>Passwort betätigen: </p><input type="password" name="passwordconfirm" id="pass2" class="form-control" placeholder="Passwort bestätigen" required="true" onkeyup="checkPass()"/> <span id="confirmMessage" class="confirmMessage"></span><br>
-						<p>Neme: </p><input type="text" name="name" class="form-control" value="<?php echo $_SESSION['name'];?>" required="true" onkeypress="return onlyText(event);"/><br />
+						<p>Name: </p><input type="text" name="name" class="form-control" value="<?php echo $_SESSION['name'];?>" required="true" onkeypress="return onlyText(event);"/><br />
                         <p>Vorname: </p><input type="text" name="vorname" class="form-control" value="<?php echo $_SESSION['vorname'];?>" required="true" onkeypress="return onlyText(event);"/><br>
                         <p>Adresse: </p><input type="text" name="adresse" class="form-control" value="<?php echo $_SESSION['adresse'];?>" /><br>
                         <p>PLZ: </p><input type="text" name="plz" class="form-control" value="<?php echo $_SESSION['plz'];?>" maxlength="4" onkeypress="return isNumberKey(event)" required="true" /><br>
