@@ -4,7 +4,6 @@
 	}
 	if ($_SESSION["authenticated"] > 0) {
         require_once("db_connection.php");
-
 		$sqlUser = "SELECT * FROM users WHERE username = '".$_SESSION["username"]."'";
 		$resultUser = $conn->query($sqlUser);
 		

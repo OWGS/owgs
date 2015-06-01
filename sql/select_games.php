@@ -7,9 +7,9 @@
 	$sqlAllKategories = "SELECT * FROM game_type";
 	$resultAllKategories = $conn->query($sqlAllKategories);
 	if (isset($_GET['platform']) || isset($_GET['kategorie']) || isset($_GET['suche'])) {
-		$suchText = (isset($_GET['suche']) ? $_GET['suche'] : "%%");
-		$platformId = (isset($_GET['platform']) ? $_GET['platform'] : "%%");
-		$katagorieId = (isset($_GET['kategorie']) ? $_GET['kategorie'] : "%%");
+		$suchText = (isset($_GET['suche']) ? mysqli_real_escape_string($conn, $_GET['suche']) : "%%");
+		$platformId = (isset($_GET['platform']) ? mysqli_real_escape_string($conn, $_GET['platform']) : "%%");
+		$katagorieId = (isset($_GET['kategorie']) ? mysqli_real_escape_string($conn, $_GET['kategorie']) : "%%");
         $resultGamesAll = $conn->query("SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorieId."' AND fk_platform LIKE '".$platformId."' AND name LIKE '%".$suchText."%'");
 		$sqlSucheGames = "SELECT * FROM produkt WHERE fk_game_type LIKE '".$katagorieId."' AND fk_platform LIKE '".$platformId."' AND name LIKE '%".$suchText."%' LIMIT $startpoint, $limit";
 		$resultGames = $conn->query($sqlSucheGames);

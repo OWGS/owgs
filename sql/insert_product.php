@@ -27,30 +27,24 @@ if ($_POST && $_POST['submit'] === "Update") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $adresse = mysqli_real_escape_string($conn, $_POST['adresse']);
     $ort = mysqli_real_escape_string($conn, $_POST['ort']);
-    require_once(__DIR__."/validation.php");
-    if ($validate) {
-        $conn->query("UPDATE users SET
-                    username='" . $username . "',
-                    plz='" . $plz . "',
-                    guthaben='" . $guthaben . "',
-                    name='" . $name . "',
-                    vorname='" . $vorname . "',
-                    email='" . $email . "',
-                    adresse='" . $adresse . "',
-                    ort='" . $ort . "'
-                    WHERE username='" . $username_old . "'");
-        if ($conn->error) {
-            $_SESSION["good"] = "Es ist ein Datenbankfehler aufgetreten";
-            header('Location: ../index.php?site=settings');
-        } else {
-            $_SESSION["good"] = "Ihre Daten wurden aktuallisiert";
-            $_SESSION["username"] = $username;
-            header('Location: ../index.php');
-        }
+    $conn->query("UPDATE users SET
+                    username='".$username."',
+                    plz='".$plz."',
+                    guthaben='".$guthaben."',
+                    name='".$name."',
+                    vorname='".$vorname."',
+                    email='".$email."',
+                    adresse='".$adresse."',
+                    ort='".$ort."'
+                    WHERE username='".$username_old."'");
+    if ($conn->error) {
+        $_SESSION["good"] = "Es ist ein Datenbankfehler aufgetreten";
+        header( 'Location: ../index.php?site=settings' );
     } else {
-        header('Location: ../index.php?site=settings');
+        $_SESSION["good"] = "Ihre Daten wurden aktuallisiert";
+        $_SESSION["username"] = $username;
+        header( 'Location: ../index.php' );
     }
-
 } else {
     require_once(__DIR__.'/db_connection.php');
     $sqlUser = "SELECT * FROM users WHERE username = '".$_SESSION["username"]."'";

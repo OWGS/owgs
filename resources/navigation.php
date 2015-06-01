@@ -36,22 +36,37 @@
 					<li>
 					 <a href="?site=warenkorb">Warenkorb<img src="img/desing/cart.PNG" style="width:22px;height:22px;border:0"></a>
 					</li>
-						<?php }  ?>
-					<?php if ($_SESSION["authenticated"] > 0) { ?>
+						<?php
+                            } //end if
+						?>
+					<?php
+                        if ($_SESSION["authenticated"] > 0) {
+                            if ($_SESSION["authenticated"] === 2) {
+                    ?>
+                                <li>
+                                    <a href="?site=new_product">Produkt hinzufügen</a>
+                                </li>
+                    <?php
+                            } // end if authenticated === 2
+                    ?>
                     <li>
                         <a href="?site=settings">Settings</a>
                     </li>
 					<li>				
 					<a href="?site=logout">Log Out</a>
 					</li>
-					<?php } else { ?>
+					<?php
+                        } else {
+                    ?>
                     <li>
                         <a href="?site=registrierung">Registrieren</a>
                     </li>
 					<li>
 							<a href="?site=login">Log In</a>
 					</li>
-					<?php }	?>
+					<?php
+                        } // end else
+                    ?>
 								
 				</ul>
             </div>

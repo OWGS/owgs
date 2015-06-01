@@ -1,7 +1,7 @@
 <?php
 	require_once(__DIR__."/db_connection.php");
 
-	$game_id = $_GET['id'];
+	$game_id = mysqli_real_escape_string($conn, $_GET['id']);
 	$sql_select_game = "SELECT * FROM produkt WHERE id=".$game_id." LIMIT 1";
 	$result_game = $conn->query($sql_select_game);
 	$game = $result_game->fetch_assoc();
