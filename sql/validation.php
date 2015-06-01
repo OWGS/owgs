@@ -7,7 +7,6 @@
  */
 
 $optionsGuthaben = array( 'options' => array('min_range' => 0, 'max_range' => 99999));
-$optionsPassword = array( 'options' => array('min_range' => 8, 'max_range' => 255));
 $regexNoSpecial = '/^[a-zA-Z0-9_\.%*#]{1,255}$/';
 $regesOnlyChar = '/^[a-zA-Z]{1,255}$/';
 $validate = true;
@@ -19,11 +18,6 @@ if (!preg_match('/^[0-9]{1,5}$/', $plz)) {
 
 if (!preg_match('/^[0-9]{1,6}$/', $guthaben)) {
     $_SESSION["bad"] = $_SESSION["bad"] . " Guthaben nicht valid.";
-    $validate = false;
-}
-
-if ($password && (!filter_var(strlen($password), FILTER_VALIDATE_INT, $optionsPassword) || !preg_match($regexNoSpecial, $password))) {
-    $_SESSION["bad"] = $_SESSION["bad"] . " Passwort nicht valid. Folgende Zeichen sind erlaubt: a-z A-Z 0-9 _ . % * # <br />";
     $validate = false;
 }
 
