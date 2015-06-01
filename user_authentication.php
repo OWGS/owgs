@@ -8,6 +8,14 @@
  */
 
 	session_start();
+	$_SESSION['username'] = $_POST['username'];
+	$_SESSION['email'] = $_POST['email'];
+	$_SESSION['name'] = $_POST['name'];
+	$_SESSION['vorname'] = $_POST['vorname'];
+	$_SESSION['adresse'] = $_POST['adresse'];
+	$_SESSION['plz'] = $_POST['plz'];
+	$_SESSION['ort'] = $_POST['ort'];
+	$_SESSION['guthaben'] = $_POST['guthaben'];
 		require_once("sql/db_connection.php");
 		
 		if ($_POST['submit'] === "login") {
@@ -40,7 +48,7 @@
 			$User = $resultUser->fetch_assoc();
 			if ($User['username'] == $username) {
 				$_SESSION["bad"] = " Der Username $username ist bereits vergeben";
-				header( 'Location: index.php?site=registrierung' );
+				header( 'Location: index.php?site=registrierung&fail=1' );
 			} else {
 				$plz = $_POST['plz'];
 				$guthaben = $_POST['guthaben'];
@@ -62,7 +70,7 @@
                     $_SESSION["good"] = "Willkommen bei OWGS Sie haben sich erfolgreich registriert.";
                     header( 'Location: index.php?site=home' );
                 } else {
-                    header( 'Location: index.php?site=registrierung');
+                    header( 'Location: index.php?site=registrierung&fail=1');
                 }
             }
 		} else {
