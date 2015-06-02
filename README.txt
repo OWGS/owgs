@@ -53,7 +53,8 @@ Falls Sie etwas mit PHP validieren wollen müssen sie Folgende Variabeln verwende
  	 } else {
 	  Die Eingaben waren nicht valid.
  	 }
-  
+
+Falls eine neu PHP validation benötigt wird einfach das file: sql/validation.php erweitern.
 	
 
 

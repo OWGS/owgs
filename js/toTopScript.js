@@ -3,7 +3,6 @@
  */
 
 
-function gotoTop()
-{
-$('body,html').animate({scrollTop: 0}, 800);
+function gotoTop() {
+    $('body,html').animate({scrollTop: 0}, 800);
 }

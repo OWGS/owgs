@@ -6,7 +6,7 @@
  * Time: 08:32
  */
 
-$optionsGuthaben = array( 'options' => array('min_range' => 0, 'max_range' => 99999));
+$optionsGuthaben = array('options' => array('min_range' => 0, 'max_range' => 99999));
 $regexNoSpecial = '/^[a-zA-Z0-9_\.%*#]{1,255}$/';
 $regesOnlyChar = '/^[a-zA-Z]{1,255}$/';
 $validate = true;
