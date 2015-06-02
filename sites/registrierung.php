@@ -1,5 +1,4 @@
 <!-- Introduction Row -->
-
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Registrierung
@@ -23,7 +22,7 @@
                                                   onkeyup="checkPass()"/> <span id="confirmMessage"
                                                                                 class="confirmMessage"></span><br>
 
-                <p>Neme: </p><input type="text" name="name" class="form-control"
+                <p>Name: </p><input type="text" name="name" class="form-control"
                                     value="<?php echo $_SESSION['name']; ?>"
                                     required="true" onkeypress="return onlyText(event);"/><br/>
 
@@ -78,6 +77,7 @@
         } ?>
     </div>
 </div>
+
 
 <script src="js/validationScripts.js"></script>
 

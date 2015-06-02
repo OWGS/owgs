@@ -40,4 +40,4 @@ if ($result_game->num_rows > 0) {
     $conn->close();
     ?>
 </div>
-		
+	
