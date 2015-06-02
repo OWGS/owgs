@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="?site=home"><img src="img/desing/logo-nav.png"></a>
+            <a class="navbar-brand" href="?site=home"><div class="img-active"></div></a>
         </div>
 
 

@@ -42,7 +42,14 @@ a:active {
     padding: 0px;
 }
 
-.navbar-brand > img {
+.img-active {
+    background-size: 110px;
+    background-repeat: no-repeat;
+    background-image: url('../img/desing/logo-nav.png');
     height: 50px;
-    padding: 0px;
+    width: 110px;
+}
+
+.img-active:hover {
+    background-image: url('../img/desing/logo-nav-weiss.png');
 }
