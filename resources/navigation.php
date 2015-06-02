@@ -26,7 +26,7 @@
                     <a href="?site=kontakt">Kontakt</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav pull-right ">
+            <ul class="nav navbar-nav navbar-right ">
                 <?php
                 session_start();
                 if (!isset($_SESSION["authenticated"])) {
