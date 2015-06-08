@@ -1,5 +1,5 @@
 ************************************
-Doku für Entwickler
+Doku fuer Entwickler
 ************************************
 
 SESSION Variablen:
@@ -12,8 +12,8 @@ $_SESSION["authenticated"]
 	2 -> Admin User eingeloggt
 
 $_SESSION["good"] und $_SESSION["bad"]
-  In diesen Variablen wird eine Message gespeichert danach auf der Seite welche als nächstes geladen wird erscheint.
-  Um Eine good message (gründe Meldung) zu senden schreibe:
+  In diesen Variablen wird eine Message gespeichert danach auf der Seite welche als naechstes geladen wird erscheint.
+  Um Eine good message (gruende Meldung) zu senden schreibe:
 	$_SESSION["good"] = "Message Text"
   Um Eine bad message (rote Meldung) zu senden schreibe:
 	$_SESSION["bad"] = "Message Text
@@ -36,7 +36,7 @@ Alle javascript Validations befinden sich im file: js/validationScript.js (kann 
 Die HTML Validations befinden sich logischerweise imemr im HTML code
 
 Alle PHP Validations befinden sich im file: sql/validation.php
-Falls Sie etwas mit PHP validieren wollen müssen sie Folgende Variabeln verwenden:
+Falls Sie etwas mit PHP validieren wollen muessen sie Folgende Variabeln verwenden:
 	$plz
 	$guthaben 
 	$password
@@ -54,7 +54,7 @@ Falls Sie etwas mit PHP validieren wollen müssen sie Folgende Variabeln verwende
 	  Die Eingaben waren nicht valid.
  	 }
 
-Falls eine neu PHP validation benötigt wird einfach das file: sql/validation.php erweitern.
+Falls eine neu PHP validation benoetigt wird einfach das file: sql/validation.php erweitern.
 	
 
 
