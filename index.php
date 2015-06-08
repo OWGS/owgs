@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<link rel="shortcut icon" href="/img/logo/iconlogo.ico"/>
     <?php require_once("resources/header.html"); ?>
 </head>
 <body>
