@@ -5,14 +5,15 @@
             <small>Füllen Sie bitte die Felder aus</small>
         </h1>
         <?php
-        if (isset($_GET['fail']) && $_GET['fail'] == 1) {
+        require_once(__DIR__."/../user_authentication.php");
+        if (isset($fail) && $fail) {
             ?>
-            <form method="post" action="user_authentication.php" name="Registrierungsformular">
-                <p>Username: </p><input type="text" name="username" class="form-control" placeholder="username"
+            <form method="post" action="index.php?site=registrierung" name="Registrierungsformular">
+                <p>Username: </p><input type="text" name="username" class="form-control" value="<?php echo $_POST['username'] ?>"
                                         required="true"/><br>
 
                 <p>E-Mail: </p><input type="email" name="email" class="form-control"
-                                      value="<?php echo $_SESSION['email']; ?>" required="true"/><br>
+                                      value="<?php echo $_POST['email']; ?>" required="true"/><br>
 
                 <p>Passwort: </p><input type="password" name="password" id="pass1" class="form-control"
                                         placeholder="Passwort (mind. 8 Zeichen)" required="true" onkeyup="checkPass()"/><br>
@@ -23,24 +24,24 @@
                                                                                 class="confirmMessage"></span><br>
 
                 <p>Name: </p><input type="text" name="name" class="form-control"
-                                    value="<?php echo $_SESSION['name']; ?>"
+                                    value="<?php echo $_POST['name']; ?>"
                                     required="true" onkeypress="return onlyText(event);"/><br/>
 
                 <p>Vorname: </p><input type="text" name="vorname" class="form-control"
-                                       value="<?php echo $_SESSION['vorname']; ?>" required="true"
+                                       value="<?php echo $_POST['vorname']; ?>" required="true"
                                        onkeypress="return onlyText(event);"/><br>
 
                 <p>Adresse: </p><input type="text" name="adresse" class="form-control"
-                                       value="<?php echo $_SESSION['adresse']; ?>"/><br>
+                                       value="<?php echo $_POST['adresse']; ?>"/><br>
 
-                <p>PLZ: </p><input type="text" name="plz" class="form-control" value="<?php echo $_SESSION['plz']; ?>"
+                <p>PLZ: </p><input type="text" name="plz" class="form-control" value="<?php echo $_POST['plz']; ?>"
                                    maxlength="4" onkeypress="return isNumberKey(event)" required="true"/><br>
 
-                <p>Ort: </p><input type="text" name="ort" class="form-control" value="<?php echo $_SESSION['ort']; ?>"
+                <p>Ort: </p><input type="text" name="ort" class="form-control" value="<?php echo $_POST['ort']; ?>"
                                    required="true" onkeypress="return onlyText(event);"/><br>
 
                 <p>Guthaben: </p><input type="text" name="guthaben" class="form-control" min="1" max="1000000"
-                                        value="<?php echo $_SESSION['guthaben']; ?>" maxlength="5"
+                                        value="<?php echo $_POST['guthaben']; ?>" maxlength="5"
                                         onkeypress="return isNumberKey(event)" required="true"/><br>
                 <input type="submit" name="submit" id="submit" value="Registrieren" , disabled="true"
                        class="btn btn-lg btn-primary btn-block"
@@ -49,7 +50,7 @@
         <?php
         } else {
             ?>
-            <form method="post" action="user_authentication.php" name="Registrierungsformular">
+            <form method="post" action="index.php?site=registrierung" name="Registrierungsformular">
                 <input type="text" name="username" class="form-control" placeholder="Benutzername" required="true"/><br>
                 <input type="email" name="email" class="form-control" placeholder="E-Mail" required="true"/><br>
                 <input type="password" name="password" id="pass1" class="form-control"
