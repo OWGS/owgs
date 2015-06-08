@@ -11,8 +11,12 @@
             $userPassword = $user['password'];
 			if (password_verify($password, $userPassword)) {
 				$_SESSION["userID"] = $user['id'];
-                $_SESSION["authenticated"] = 1;
-				$_SESSION["username"] = $username;
+                if ($user["fk_rolle"] == 4){
+                    $_SESSION["authenticated"] = 2;
+                } else {
+                    $_SESSION["authenticated"] = 1;
+                }
+                $_SESSION["username"] = $username;
 				$_SESSION["good"] = "Hallo $username. Sie haben sich erfolgreich angemeldet.";
 				header ( 'Location: index.php?site=home' ); 
 			} else {

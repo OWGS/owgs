@@ -1,4 +1,4 @@
-<?php require_once("user_authentication_check.php"); ?>
+<?php require_once(__DIR__."/../user_authentication_check.php"); ?>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
