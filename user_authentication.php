@@ -35,12 +35,13 @@ if (isset($_POST['submit'])) {
         }
     } elseif ($_POST['submit'] === "Registrieren") {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $sqlFindUser = "SELECT * FROM users WHERE username='" . $username . "'";
+        $sqlFindUser = "SELECT * FROM users WHERE username LIKE '" . $username . "'";
         $resultUser = $conn->query($sqlFindUser);
         $User = $resultUser->fetch_assoc();
         if ($User['username'] == $username) {
             $_SESSION["bad"] = " Der Username $username ist bereits vergeben";
-            header('Location: index.php?site=registrierung&fail=1');
+            $fail = true;
+            require(__DIR__."/resources/messages.php");
         } else {
             $plz = $_POST['plz'];
             $guthaben = $_POST['guthaben'];

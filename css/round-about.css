@@ -45,7 +45,7 @@ a:active {
 .img-active {
     background-size: 110px;
     background-repeat: no-repeat;
-    background-image: url('../img/desing/logo-nav.png');
+    background-image: url('/img/desing/logo-nav.png');
     height: 50px;
     width: 110px;
 }
