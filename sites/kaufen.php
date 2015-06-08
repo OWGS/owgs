@@ -11,13 +11,16 @@
         if ($userGuthaben >= $gesamtpreis && $resultWarenkorb->num_rows > 0) {
             ?>
             <div class='col-lg-12'>
-                <h2>Guthaben: <?php echo $userGuthaben; ?> Fr. - <?php echo $gesamtpreis; ?> Fr. = <h2>
-                <h2>Restguthaben: <?php echo ($userGuthaben - $gesamtpreis)?> </h2>
+                <h2>Guthaben: <?php echo $userGuthaben; ?> Fr. - <?php echo $gesamtpreis; ?> Fr. =
+                    <h2>
+                        <h2>Restguthaben: <?php echo($userGuthaben - $gesamtpreis) ?> </h2>
             </div>
 
             <div class="col-lg-12">
                 <br/>
-                <a href="sql/kaufen.php"><Button class="btn btn-lg btn-primary btn-block">Bestätigen</Button></a>
+                <a href="sql/kaufen.php">
+                    <Button class="btn btn-lg btn-primary btn-block">Bestätigen</Button>
+                </a>
             </div>
         <?php
         } else {

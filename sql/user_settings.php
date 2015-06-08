@@ -7,7 +7,7 @@
  */
 if ($_POST && $_POST['submit'] === "Update") {
     session_start();
-    require_once(__DIR__."/db_connection.php");
+    require_once(__DIR__ . "/db_connection.php");
     $username_old = $_SESSION["username"];
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     if ($username_old !== $username) {
@@ -16,7 +16,7 @@ if ($_POST && $_POST['submit'] === "Update") {
         $User = $resultUser->fetch_assoc();
         if ($User['username'] == $username) {
             $_SESSION["bad"] = " Der Username $username ist bereits vergeben";
-            header( 'Location: ../index.php?site=settings' );
+            header('Location: ../index.php?site=settings');
             return;
         }
     }
@@ -27,27 +27,33 @@ if ($_POST && $_POST['submit'] === "Update") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $adresse = mysqli_real_escape_string($conn, $_POST['adresse']);
     $ort = mysqli_real_escape_string($conn, $_POST['ort']);
-    $conn->query("UPDATE users SET
-                    username='".$username."',
-                    plz='".$plz."',
-                    guthaben='".$guthaben."',
-                    name='".$name."',
-                    vorname='".$vorname."',
-                    email='".$email."',
-                    adresse='".$adresse."',
-                    ort='".$ort."'
-                    WHERE username='".$username_old."'");
-    if ($conn->error) {
-        $_SESSION["good"] = "Es ist ein Datenbankfehler aufgetreten";
-        header( 'Location: ../index.php?site=settings' );
+    require_once(__DIR__ . "/validation.php");
+    if ($validate) {
+        $conn->query("UPDATE users SET
+                    username='" . $username . "',
+                    plz='" . $plz . "',
+                    guthaben='" . $guthaben . "',
+                    name='" . $name . "',
+                    vorname='" . $vorname . "',
+                    email='" . $email . "',
+                    adresse='" . $adresse . "',
+                    ort='" . $ort . "'
+                    WHERE username='" . $username_old . "'");
+        if ($conn->error) {
+            $_SESSION["good"] = "Es ist ein Datenbankfehler aufgetreten";
+            header('Location: ../index.php?site=settings');
+        } else {
+            $_SESSION["good"] = "Ihre Daten wurden aktuallisiert";
+            $_SESSION["username"] = $username;
+            header('Location: ../index.php');
+        }
     } else {
-        $_SESSION["good"] = "Ihre Daten wurden aktuallisiert";
-        $_SESSION["username"] = $username;
-        header( 'Location: ../index.php' );
+        header('Location: ../index.php?site=settings');
     }
+
 } else {
-    require_once(__DIR__.'/db_connection.php');
-    $sqlUser = "SELECT * FROM users WHERE username = '".$_SESSION["username"]."'";
+    require_once(__DIR__ . '/db_connection.php');
+    $sqlUser = "SELECT * FROM users WHERE username = '" . $_SESSION["username"] . "'";
     $resultUser = $conn->query($sqlUser);
     $user = $resultUser->fetch_assoc();
     $username = $user["username"];
