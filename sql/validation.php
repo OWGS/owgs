@@ -7,7 +7,6 @@
  */
 
 $optionsGuthaben = array('options' => array('min_range' => 0, 'max_range' => 99999));
-$regexNoSpecial = '/^[a-zA-Z0-9_\.%*#]{1,255}$/';
 $regesOnlyChar = '/^[a-zA-Z]{1,255}$/';
 $validate = true;
 
@@ -31,8 +30,8 @@ if (!preg_match($regesOnlyChar, $vorname)) {
     $validate = false;
 }
 
-if (!preg_match($regexNoSpecial, $username)) {
-    $_SESSION["bad"] = $_SESSION["bad"] . " Username nicht valid. Folgende Zeichen sind erlaubt: a-z A-Z 0-9 _ . % * # <br />";
+if (!preg_match('/^[a-z0-9_\.%*#]{1,255}$/', $username)) {
+    $_SESSION["bad"] = $_SESSION["bad"] . " Username nicht valid. Folgende Zeichen sind erlaubt: alle Kleinbuchstaben, Zahlen und  _ . % * # <br />";
     $validate = false;
 }
 
@@ -41,7 +40,7 @@ if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $validate = false;
 }
 
-if (!preg_match('/^[A-z]{1,60}\.?[A-z]{1,60}?\.?\s[0-9]{1,5}?$/', $adresse)) {
+if (!preg_match('/^[A-zäöüàéè]{1,60}\.?[A-zäöüàéè]{1,60}?\.?\s[0-9]{1,5}?$/', $adresse)) {
     $_SESSION["bad"] = $_SESSION["bad"] . " Adresse nicht valid. <br />";
     $validate = false;
 }
