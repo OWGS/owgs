@@ -20,6 +20,8 @@ if ($_SESSION["authenticated"] != 2) {
         <?php
         require_once(__DIR__ . '/../sql/insert_product.php');
         ?>
+        <h1>IN DEVELOPMENT</h1>
+        <!--
         <form method="post" action="sql/insert_product.php" name="Registrierungsformular">
             <p>Name: </p><input type="text" name="name" class="form-control" placeholder="" required="true"/><br>
 
@@ -45,7 +47,6 @@ if ($_SESSION["authenticated"] != 2) {
             <input type="submit" name="submit" id="submit" value="Update" , class="btn btn-lg btn-primary btn-block"
                    onclick="allnumeric(document.Registrierungsformular.plz)"/>
         </form>
+        -->
     </div>
 </div>
-
-<script src="js/validationScripts.js"></script>
