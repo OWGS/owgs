@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 19. Mai 2015 um 10:14
+-- Erstellungszeit: 08. Jun 2015 um 09:30
 -- Server-Version: 5.6.24
 -- PHP-Version: 5.6.8
 
@@ -121,14 +121,15 @@ INSERT INTO `produkt` (`id`, `name`, `fk_platform`, `description`, `fk_game_type
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(3, 'user');
+(3, 'user'),
+(4, 'admin');
 
 -- --------------------------------------------------------
 
@@ -148,8 +149,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fk_rolle` int(11) NOT NULL,
   `guthaben` int(11) NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `users`
+--
+
+INSERT INTO `users` (`id`, `password`, `vorname`, `name`, `adresse`, `plz`, `ort`, `username`, `fk_rolle`, `guthaben`, `email`) VALUES
+(11, '$2y$10$MpQbXlB3GRePxdAThbr2X.OGiCJfJdQ8DoEzJ9MjDGTM749t6WYI2', 'admin', 'admin', 'admin 32', 1234, 'admin', 'admin', 4, 99999, 'admin@admin.ch');
+
+-- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `warenkorb`
@@ -160,7 +169,16 @@ CREATE TABLE IF NOT EXISTS `warenkorb` (
   `fk_user` int(11) NOT NULL,
   `fk_produkt` int(11) NOT NULL,
   `quantity` int(11) DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `warenkorb`
+--
+
+INSERT INTO `warenkorb` (`id`, `fk_user`, `fk_produkt`, `quantity`) VALUES
+(7, 0, 1, 1),
+(42, 10, 13, 4),
+(43, 9, 1, 2);
 
 --
 -- Indizes der exportierten Tabellen
@@ -225,17 +243,17 @@ ALTER TABLE `produkt`
 -- AUTO_INCREMENT für Tabelle `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `warenkorb`
 --
 ALTER TABLE `warenkorb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
