@@ -7,7 +7,6 @@
  * Bitte keine Variablennamen ändern welche im validation.php file verwendet werden.
  */
 
-
 require_once("sql/db_connection.php");
 if (isset($_POST['submit'])) {
     if ($_POST['submit'] === "login") {
@@ -64,6 +63,7 @@ if (isset($_POST['submit'])) {
                 header('Location: index.php?site=home');
             } else {
                 $fail = true;
+                require(__DIR__."/resources/messages.php");
             }
         }
     } else {
