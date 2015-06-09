@@ -1,6 +1,13 @@
 ************************************
-Doku fuer Entwickler
+Doku fuer Entwickler Git: https://github.com/OWGS/owgs
 ************************************
+Webseite installieren:
+-----------------------------------
+1. Leere mySQL Datenbank mit Namen OWGS erstellen (Es können auch andere Namen verwendet werden.)
+2. sql script owgs.sql in der erstellten Datenbank ausführen
+3. die sql/db_connection.php datei anpassen
+4. Alle Files auf den Webserver kopieren Download: https://github.com/OWGS/owgs/archive/master.zip
+
 
 SESSION Variablen:
 -----------------------------------
