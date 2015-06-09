@@ -9,7 +9,7 @@ body {
 }
 
 .img-center {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 footer {
@@ -17,22 +17,39 @@ footer {
 }
 
 input {
-	max-width: 300px;
+    max-width: 300px;
 }
 
-a:active{
-	color: white;
-	content:"\e116";
+a:active {
+    color: white;
+    content: "\e116";
 }
-.games  img{
-	height: 200px;
+
+.games img {
+    height: 200px;
 }
 
 .btnSuche {
-	height: 34px;
-	padding: 0,0 !important;
-	margin-left: 10px;
+    height: 34px;
+    padding: 0, 0 !important;
+    margin-left: 10px;
 }
+
 .ToTop {
-float: right;
+    float: right;
+}
+.navbar-brand {
+    padding: 0px;
+}
+
+.img-active {
+    background-size: 110px;
+    background-repeat: no-repeat;
+    background-image: url('/img/desing/logo-nav.png');
+    height: 50px;
+    width: 110px;
+}
+
+.img-active:hover {
+    background-image: url('../img/desing/logo-nav-weiss.png');
 }
