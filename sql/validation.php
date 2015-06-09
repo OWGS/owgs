@@ -7,11 +7,11 @@
  */
 
 $optionsGuthaben = array('options' => array('min_range' => 0, 'max_range' => 99999));
-$regesOnlyChar = '/^[a-zA-Z]{1,255}$/';
+$regesOnlyChar = '/^[a-zA-ZäöüàéèÄÖÜÈÉÀ]{1,255}$/';
 $validate = true;
 
 if (!preg_match('/^[0-9]{1,5}$/', $plz)) {
-    $_SESSION["bad"] = $_SESSION["bad"] . " PLZ nicht valid.";
+    $_SESSION["bad"] = $_SESSION["bad"] . " PLZ nicht valid. Nur Zahlen ";
     $validate = false;
 }
 
@@ -40,7 +40,7 @@ if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $validate = false;
 }
 
-if (!preg_match('/^[A-zäöüàéè]{1,60}\.?[A-zäöüàéè]{1,60}?\.?\s[0-9]{1,5}?$/', $adresse)) {
-    $_SESSION["bad"] = $_SESSION["bad"] . " Adresse nicht valid. <br />";
+if (!preg_match('/^[A-zäöüàéèÄÖÜÀÉÈ]{1,60}\.?[A-zäöüàéè]{1,60}?\.?\s[0-9]{1,5}?$/', $adresse)) {
+    $_SESSION["bad"] = $_SESSION["bad"] . " Adresse nicht valid. Bitte folgendes Format verwenden: Strassenname Zahl <br />";
     $validate = false;
 }
